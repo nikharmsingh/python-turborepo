@@ -36,20 +36,49 @@ class Quote(BaseModel):
     author: str
 
 
-class APIInfo(BaseModel):
+class Service(BaseModel):
     name: str
-    version: str
+    base: str
     docs: str
     endpoints: list[str]
 
 
-@app.get("/", response_model=APIInfo)
-async def root() -> APIInfo:
-    return APIInfo(
+class Registry(BaseModel):
+    name: str
+    version: str
+    deployed_at: str
+    services: list[Service]
+
+
+SERVICES: list[Service] = [
+    Service(
         name="Hello API",
-        version="0.1.0",
+        base="/",
         docs="/docs",
         endpoints=["/health", "/quotes", "/quotes/random", "/quotes/{id}", "/utils/uuid", "/utils/timestamp"],
+    ),
+    Service(
+        name="Notes API",
+        base="/notes",
+        docs="/notes/docs",
+        endpoints=["GET /notes", "POST /notes", "GET /notes/{id}", "PUT /notes/{id}", "DELETE /notes/{id}"],
+    ),
+    Service(
+        name="Code Reviewer",
+        base="/code-review",
+        docs="/code-review/docs",
+        endpoints=["POST /code-review", "GET /code-review/health"],
+    ),
+]
+
+
+@app.get("/", response_model=Registry)
+async def root() -> Registry:
+    return Registry(
+        name="python-turborepo API",
+        version="0.2.0",
+        deployed_at="https://python-turborepo.vercel.app",
+        services=SERVICES,
     )
 
 
