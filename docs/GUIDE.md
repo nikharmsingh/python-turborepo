@@ -141,7 +141,7 @@ git push
 ```
 
 Vercel auto-redeploys on every push to `main`. Your app is live at:
-`https://bifrost.vercel.app/my-app`
+`https://bifrost-api.vercel.app/my-app`
 
 ### Live apps
 

@@ -77,7 +77,7 @@ async def root() -> Registry:
     return Registry(
         name="bifrost API",
         version="0.2.0",
-        deployed_at="https://bifrost.vercel.app",
+        deployed_at="https://bifrost-api.vercel.app",
         services=SERVICES,
     )
 
