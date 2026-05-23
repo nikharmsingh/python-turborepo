@@ -1,9 +1,9 @@
 import json
 import os
 
-from anthropic import Anthropic
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from groq import Groq
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -15,16 +15,16 @@ app = FastAPI(
 
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
-_client: Anthropic | None = None
+_client: Groq | None = None
 
 
-def get_client() -> Anthropic:
+def get_client() -> Groq:
     global _client
     if _client is None:
-        api_key = os.getenv("ANTHROPIC_API_KEY", "")
+        api_key = os.getenv("GROQ_API_KEY", "")
         if not api_key:
-            raise HTTPException(status_code=500, detail="ANTHROPIC_API_KEY is not set")
-        _client = Anthropic(api_key=api_key)
+            raise HTTPException(status_code=500, detail="GROQ_API_KEY is not set")
+        _client = Groq(api_key=api_key)
     return _client
 
 
@@ -87,19 +87,17 @@ async def review_code(req: ReviewRequest) -> dict:
     if len(req.code) > 10_000:
         raise HTTPException(status_code=400, detail="code exceeds 10,000 character limit")
 
-    message = get_client().messages.create(
-        model="claude-sonnet-4-6",
+    response = get_client().chat.completions.create(
+        model="llama-3.3-70b-versatile",
         max_tokens=2048,
-        system=SYSTEM_PROMPT,
         messages=[
-            {
-                "role": "user",
-                "content": f"Review this {req.language} code:\n\n```{req.language}\n{req.code}\n```",
-            }
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": f"Review this {req.language} code:\n\n```{req.language}\n{req.code}\n```"},
         ],
+        response_format={"type": "json_object"},
     )
 
     try:
-        return json.loads(message.content[0].text)
+        return json.loads(response.choices[0].message.content)
     except (json.JSONDecodeError, IndexError):
-        raise HTTPException(status_code=500, detail="Claude returned an unexpected response format")
+        raise HTTPException(status_code=500, detail="Model returned an unexpected response format")
