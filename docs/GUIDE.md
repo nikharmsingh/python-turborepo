@@ -22,8 +22,8 @@ Step-by-step instructions for every type of work in this monorepo.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and install all workspace deps
-git clone https://github.com/nikharmsingh/python-turborepo
-cd python-turborepo
+git clone https://github.com/nikharmsingh/bifrost
+cd bifrost
 
 # Copy env and fill in your Anthropic API key
 cp .env.example .env
@@ -141,7 +141,7 @@ git push
 ```
 
 Vercel auto-redeploys on every push to `main`. Your app is live at:
-`https://python-turborepo.vercel.app/my-app`
+`https://bifrost.vercel.app/my-app`
 
 ### Live apps
 
@@ -516,12 +516,12 @@ Add to your MCP config (`~/.claude/mcp_servers.json` or Claude Desktop settings)
     "knowledge-base": {
       "command": "uv",
       "args": ["run", "--package", "knowledge-base", "python", "src/server.py"],
-      "cwd": "/path/to/python-turborepo"
+      "cwd": "/path/to/bifrost"
     },
     "code-runner": {
       "command": "uv",
       "args": ["run", "--package", "code-runner", "python", "src/server.py"],
-      "cwd": "/path/to/python-turborepo"
+      "cwd": "/path/to/bifrost"
     }
   }
 }
@@ -610,7 +610,7 @@ uv run --package my-server python src/server.py
     "my-server": {
       "command": "uv",
       "args": ["run", "--package", "my-server", "python", "src/server.py"],
-      "cwd": "/path/to/python-turborepo"
+      "cwd": "/path/to/bifrost"
     }
   }
 }

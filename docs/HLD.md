@@ -36,7 +36,7 @@ Turborepo builds `ui` before `web` because `web` depends on it.
 This repo is the **Python equivalent** of a Turborepo monorepo. It uses `uv` (Python's modern package manager) in workspace mode to achieve the same goals — shared code, isolated apps, single lockfile — without the JavaScript toolchain.
 
 ```
-python-turborepo/
+bifrost/
 ├── pyproject.toml       ← workspace root (uv replaces turbo.json + package.json)
 ├── uv.lock              ← single lockfile for all packages (like pnpm-lock.yaml)
 ├── packages/            ← shared libraries (imported by apps)
@@ -98,7 +98,7 @@ python-turborepo/
 └─────────────────────────────────────────────────────┘
                            │
                            ▼
-              python-turborepo.vercel.app
+              bifrost.vercel.app
 
 
 ┌──────────────────────────────────────────┐

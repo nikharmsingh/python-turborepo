@@ -1,4 +1,4 @@
-# python-turborepo
+# bifrost
 
 A `uv`-powered Python monorepo for MCP servers, FastAPI backends, and LangGraph agents — like Turborepo but for Python.
 
@@ -24,7 +24,7 @@ A `uv`-powered Python monorepo for MCP servers, FastAPI backends, and LangGraph 
 ## Structure
 
 ```
-python-turborepo/
+bifrost/
 ├── packages/
 │   ├── core/       # pydantic settings, logging, shared types
 │   ├── llm/        # Anthropic client, streaming helpers
@@ -50,7 +50,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and sync
 git clone <repo>
-cd python-turborepo
+cd bifrost
 cp .env.example .env   # fill in ANTHROPIC_API_KEY
 uv sync
 

@@ -75,9 +75,9 @@ SERVICES: list[Service] = [
 @app.get("/", response_model=Registry)
 async def root() -> Registry:
     return Registry(
-        name="python-turborepo API",
+        name="bifrost API",
         version="0.2.0",
-        deployed_at="https://python-turborepo.vercel.app",
+        deployed_at="https://bifrost.vercel.app",
         services=SERVICES,
     )
 

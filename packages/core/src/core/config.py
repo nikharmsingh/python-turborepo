@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     langchain_api_key: str = ""
     langchain_tracing_v2: bool = False
-    langchain_project: str = "python-turborepo"
+    langchain_project: str = "bifrost"
 
 
 @lru_cache
