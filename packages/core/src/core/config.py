@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
     log_level: str = "INFO"
     env: str = "development"
+    allowed_origins: list[str] = ["*"]
 
     langchain_api_key: str = ""
     langchain_tracing_v2: bool = False

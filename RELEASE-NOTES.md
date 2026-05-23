@@ -4,6 +4,22 @@ All notable changes to Bifrost are documented here.
 
 ---
 
+## [v0.5.0] — 2026-05-24
+
+### Added
+- **Async streaming** — gateway `/chat/stream` now uses a true async generator backed by `AsyncAnthropic`, so it no longer blocks the event loop.
+- **Prompt caching** — system prompts in both `stream_text` and `stream_text_async` are sent with `cache_control: ephemeral`, enabling Anthropic prompt cache hits and reducing latency + cost on repeated calls.
+- **`stream_text_async`** — new async streaming helper in `packages/llm` alongside the existing sync version.
+- **`CodingState` TypedDict** — extracted to `agents/coding-agent/src/state.py`; node functions are now properly typed (was plain `dict`).
+
+### Changed
+- **Lazy model init in agents** — `_model` module-level instantiation replaced with `@lru_cache _get_model()` in both research-agent and coding-agent; API key is now read on first call, not at import time.
+- **Configurable CORS origins** — gateway reads `allowed_origins` from `Settings`; notes-api reads `ALLOWED_ORIGINS` env var. Both default to `*` in development.
+- **Notes-api input validation** — `NoteIn.title` capped at 200 chars (min 1); `NoteIn.content` capped at 50,000 chars.
+- **Landing page version** — `⚡ Bifrost API` header now reads version from `app.version` instead of a hardcoded string; bumped to `0.5.0`.
+
+---
+
 ## [v0.4.0] — 2026-05-24
 
 ### Added

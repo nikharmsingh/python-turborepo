@@ -10,7 +10,7 @@ from pydantic import BaseModel
 app = FastAPI(
     title="Hello API",
     description="A simple FastAPI app deployed on Vercel",
-    version="0.1.0",
+    version="0.5.0",
     docs_url="/docs",
     redoc_url="/redoc",
 )
@@ -123,7 +123,7 @@ async def root() -> str:
         <header>
             <h1>⚡ Bifrost API</h1>
             <div class="meta">
-                <span>v0.3.0</span>
+                <span>v{app.version}</span>
                 <span><a href="https://github.com/nikharmsingh/bifrost" style="color:#6366f1">GitHub ↗</a></span>
             </div>
         </header>

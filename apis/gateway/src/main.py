@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from core.config import get_settings
 from core.logging import get_logger
 from .routers import chat
 
@@ -9,7 +10,7 @@ app = FastAPI(title="Gateway API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=get_settings().allowed_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )

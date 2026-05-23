@@ -1,16 +1,6 @@
-from typing import Annotated
-from typing_extensions import TypedDict
 from langgraph.graph import StateGraph, END
-from langgraph.graph.message import add_messages
 from .nodes import coder, reviewer
-
-
-class CodingState(TypedDict):
-    messages: Annotated[list, add_messages]
-    task: str
-    code: str
-    review: str
-
+from .state import CodingState
 
 builder = StateGraph(CodingState)
 builder.add_node("coder", coder)

@@ -6,7 +6,7 @@ from uuid import uuid4
 import sqlalchemy as sa
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy import create_engine
 from sqlalchemy.pool import NullPool
 
@@ -42,7 +42,8 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+_allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+app.add_middleware(CORSMiddleware, allow_origins=_allowed_origins, allow_methods=["*"], allow_headers=["*"])
 
 
 def require_db():
@@ -52,8 +53,8 @@ def require_db():
 
 
 class NoteIn(BaseModel):
-    title: str
-    content: str
+    title: str = Field(min_length=1, max_length=200)
+    content: str = Field(max_length=50_000)
 
 
 class Note(BaseModel):

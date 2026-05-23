@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from llm.streaming import stream_text
+from llm.streaming import stream_text_async
 
 router = APIRouter()
 
@@ -14,8 +14,8 @@ class ChatRequest(BaseModel):
 
 @router.post("/stream")
 async def chat_stream(req: ChatRequest) -> StreamingResponse:
-    def _generate():
-        for chunk in stream_text(req.prompt, model=req.model, system=req.system):
+    async def _generate():
+        async for chunk in stream_text_async(req.prompt, model=req.model, system=req.system):
             yield chunk
 
     return StreamingResponse(_generate(), media_type="text/plain")
