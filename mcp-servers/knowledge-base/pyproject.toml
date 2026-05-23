@@ -12,6 +12,5 @@ dependencies = [
 core  = { workspace = true }
 tools = { workspace = true }
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.uv]
+package = false

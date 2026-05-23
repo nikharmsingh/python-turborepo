@@ -1,0 +1,28 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "anthropic",
+    "buildx",
+    "containerised",
+    "fastapi",
+    "fastmcp",
+    "hatchling",
+    "httpx",
+    "jiter",
+    "langchain",
+    "langgraph",
+    "pydantic",
+    "pyproject",
+    "sniffio",
+    "turborepo",
+    "uvicorn",
+    "uvloop",
+    "vercel"
+  ],
+  "ignorePaths": [
+    ".git",
+    "node_modules",
+    "uv.lock"
+  ]
+}
