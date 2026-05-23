@@ -1,6 +1,28 @@
-# bifrost
+# ⚡ Bifrost
 
-A `uv`-powered Python monorepo for MCP servers, FastAPI backends, and LangGraph agents — like Turborepo but for Python.
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.13-blue?logo=python&logoColor=white" alt="Python 3.13"/>
+  <img src="https://img.shields.io/badge/package_manager-uv-violet?logo=astral&logoColor=white" alt="uv"/>
+  <img src="https://img.shields.io/badge/deployed_on-Vercel-black?logo=vercel&logoColor=white" alt="Vercel"/>
+  <img src="https://img.shields.io/badge/LLM-Anthropic-orange?logo=anthropic&logoColor=white" alt="Anthropic"/>
+  <img src="https://img.shields.io/github/v/release/nikharmsingh/bifrost?color=indigo&label=release" alt="Release"/>
+  <br/>
+  <img src="https://img.shields.io/github/actions/workflow/status/nikharmsingh/bifrost/deploy-gateway.yml?label=gateway&logo=githubactions&logoColor=white" alt="Gateway CI"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/nikharmsingh/bifrost/deploy-research-agent.yml?label=research-agent&logo=githubactions&logoColor=white" alt="Research Agent CI"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/nikharmsingh/bifrost/deploy-coding-agent.yml?label=coding-agent&logo=githubactions&logoColor=white" alt="Coding Agent CI"/>
+</p>
+
+<p align="center">
+  A <code>uv</code>-powered Python monorepo for MCP servers, FastAPI backends, and LangGraph agents — like Turborepo but for Python.
+</p>
+
+---
+
+## Architecture
+
+![Bifrost Architecture](docs/architecture.svg)
+
+---
 
 ## Documentation
 
