@@ -70,6 +70,12 @@ SERVICES: list[Service] = [
         docs="/code-review/docs",
         endpoints=["POST /code-review", "GET /code-review/health"],
     ),
+    Service(
+        name="Resume Analyzer",
+        base="/resume-analyzer",
+        docs="/resume-analyzer/docs",
+        endpoints=["GET /resume-analyzer", "POST /resume-analyzer/analyze", "GET /resume-analyzer/health"],
+    ),
 ]
 
 

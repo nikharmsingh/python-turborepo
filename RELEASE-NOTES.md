@@ -4,6 +4,21 @@ All notable changes to Bifrost are documented here.
 
 ---
 
+## [v0.6.0] — 2026-05-25
+
+### Added
+- **Resume Analyzer** (`apps/resume-analyzer/`) — end-to-end app deployed at `/resume-analyzer`.
+  - `GET /resume-analyzer` — interactive dark-mode HTML UI with drag-and-drop PDF upload and job posting URL input.
+  - `POST /resume-analyzer/analyze` — accepts a PDF resume + job posting URL; extracts PDF text with `pypdf`, scrapes the job page with `httpx` + `BeautifulSoup`, and returns a structured analysis: match score (0–100), verdict, strengths, gaps, actionable suggestions, and matched/missing keywords.
+  - **Dual-provider LLM support** — uses Anthropic Claude Sonnet (`tool_use` with forced tool call for guaranteed structured output) when `ANTHROPIC_API_KEY` is set; falls back to Groq `llama-3.3-70b-versatile` (JSON mode) when only `GROQ_API_KEY` is set. Anthropic takes precedence when both keys are present.
+- **Resume Analyzer** added to the hello-api service registry on the Bifrost landing page.
+
+### Changed
+- `requirements.txt` — added `anthropic`, `httpx`, `pypdf`, `beautifulsoup4`, `python-multipart` for the new app.
+- `vercel.json` — added build entry and `/resume-analyzer(.*)` route for the new app.
+
+---
+
 ## [v0.5.0] — 2026-05-24
 
 ### Added
