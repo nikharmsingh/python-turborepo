@@ -10,7 +10,7 @@ from pydantic import BaseModel
 app = FastAPI(
     title="Hello API",
     description="A simple FastAPI app deployed on Vercel",
-    version="0.5.0",
+    version="0.6.0",
     docs_url="/docs",
     redoc_url="/redoc",
 )
